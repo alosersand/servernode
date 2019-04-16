@@ -1,0 +1,19 @@
+{
+  "name": "servernode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lazyBit99/servernode.git"
+  },
+  "author": "lazyBit99",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lazyBit99/servernode/issues"
+  },
+  "homepage": "https://github.com/lazyBit99/servernode#readme"
+}
