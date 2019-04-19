@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "express": "node express.js",
     "start": "node index.js",
     "serve": "npm start",
     "dev": "node dev.js",
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/lazyBit99/servernode/issues"
   },
-  "homepage": "https://github.com/lazyBit99/servernode#readme"
+  "homepage": "https://github.com/lazyBit99/servernode#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
