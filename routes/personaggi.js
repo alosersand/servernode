@@ -1,27 +1,21 @@
 const express = require('express')
 const router = express.Router()
+const characters = require('../data/characters')
+
 
 router.get('/', (req, res) => {
     const query = req.query
-    let msg = 'Ciao'
-    console.log('RES', query)
+    let personaggi = characters.characters
 
-    if (query.key === '768654343457870695854') {
-        msg = `${msg} Ale`
-
-        if (query.sesso === 'm') {
-            msg = `${msg} bell'uomo`
-        }
-        if (query.colore) {
-            msg = `${msg} ${query.colore}`
-        }
-    } else {
-        msg = 'Non sei autorizzato'
+    if ('lastname' in query) {
+        personaggi = personaggi.filter((personaggio) => {
+            return personaggio.lastname === query.lastname
+        })
     }
 
-    res.send(msg)
+    res.send(personaggi)
 })
-  
+
 router.get('/:id', (req, res) => {
     const id = req.params.id
     console.log('ID: ', id)
