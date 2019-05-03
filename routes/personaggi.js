@@ -22,8 +22,10 @@ router.get('/', (req, res) => {
     res.send(msg)
 })
   
-// router.get('/personaggi', (req, res) => {
-//     res.send('Personaggi')
-// })
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    console.log('ID: ', id)
+    res.send(`personaggio id: ${id}`)
+})
 
 module.exports = router
