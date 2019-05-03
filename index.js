@@ -1,34 +1,20 @@
 const express = require('express')
 const app = express()
-const fs = require('fs')
+const { settings } = require('./settings')
+const { test } = require('./settings')
+
+const users = require('./routes/users')
+const personaggi = require('./routes/personaggi')
 let port = process.argv[2] || 8080
 
-app.get('/books', function(req, res){
-  const filename = process.argv[2]
-  fs.readFile(filename, function(e, data) {
-    // 500 Internal Server Error
-    if (e) return res.sendStatus(500)
-    try {
-      books = JSON.parse(data)
-    } catch (e) {
-      res.sendStatus(500)
-    }
-    res.json(books)
-  })
-})
+console.log(settings)
+console.log(test)
 
-app.get('/menu', function(req, res){
-  const filename = process.argv[3]
-  fs.readFile(filename, function(e, data) {
-    // 500 Internal Server Error
-    if (e) return res.sendStatus(500)
-    try {
-      menu = JSON.parse(data)
-    } catch (e) {
-      res.sendStatus(500)
-    }
-    res.json(menu)
-  })
-})
+// app.get('/', (req, res) => {
+//   res.send('Ciao')
+// })
+
+app.use('/users', users)
+app.use('/personaggi', personaggi)
 
 app.listen(port)
