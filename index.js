@@ -1,13 +1,34 @@
 const express = require('express')
-// let port = process.PORT || 3000
-let port = process.argv[2] || 3000
 const app = express()
+const fs = require('fs')
+let port = process.argv[2] || 8080
 
-if (process.argv[2] === 'v')
-  console.log('MyApp verisione 0.0.1')
- 
-app.use(express.static(__dirname + '/public'))
- 
+app.get('/books', function(req, res){
+  const filename = process.argv[2]
+  fs.readFile(filename, function(e, data) {
+    // 500 Internal Server Error
+    if (e) return res.sendStatus(500)
+    try {
+      books = JSON.parse(data)
+    } catch (e) {
+      res.sendStatus(500)
+    }
+    res.json(books)
+  })
+})
+
+app.get('/menu', function(req, res){
+  const filename = process.argv[3]
+  fs.readFile(filename, function(e, data) {
+    // 500 Internal Server Error
+    if (e) return res.sendStatus(500)
+    try {
+      menu = JSON.parse(data)
+    } catch (e) {
+      res.sendStatus(500)
+    }
+    res.json(menu)
+  })
+})
+
 app.listen(port)
-
-console.log(`Servver runnuning at http://127.0.0.1:${port}`)
