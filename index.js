@@ -2,10 +2,18 @@ const express = require('express')
 const app = express()
 const { settings } = require('./settings')
 const { test } = require('./settings')
+const package = require('./package.json')
 
 const users = require('./routes/users')
 const personaggi = require('./routes/personaggi')
 let port = process.argv[2] || 8080
+
+const myLogger = (req, res, next) => {
+    console.log('LOGGED')
+    next()
+}
+
+app.use(myLogger)
 
 console.log(settings)
 console.log(test)
@@ -14,7 +22,12 @@ console.log(test)
 //   res.send('Ciao')
 // })
 
-app.use('/users', users)
-app.use('/personaggi', personaggi)
+app.use('/v0.1/users', users)
+app.use('/v0.1/personaggi', personaggi)
+app.use(`/v${package.version}/personaggi`, personaggi)
+
+app.use((req, res) => {
+    res.status(404).send('What???')
+})
 
 app.listen(port)
