@@ -4,8 +4,8 @@ const characters = require('../data/characters')
 
 
 router.get('/', (req, res, next) => {
-    const query = req.query
     let personaggi = characters.characters
+    const query = req.query
 
     if ('lastname' in query) {
         personaggi = personaggi.filter((personaggio) => {
@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 
     if ('firstname' in query) {
         personaggi = personaggi.filter((personaggio) => {
-            return personaggio.lastname === query.firstname
+            return personaggio.firstname === query.firstname
         })
     }
 
@@ -28,9 +28,12 @@ router.get('/', (req, res, next) => {
 )
 
 router.get('/:id', (req, res) => {
-    const id = req.params.id
+    let personaggi = characters.characters
+    const id = Number(req.params.id)
+
     console.log('ID: ', id)
-    res.send(`personaggio id: ${id}`)
+    // res.send(`personaggio id: ${id}`)
+    res.json(personaggi.filter((personaggio) => personaggio.id === id))
 })
 
 module.exports = router

@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const { settings } = require('./settings')
 const { test } = require('./settings')
-const package = require('./package.json')
+const package = require('./package')
 
 const users = require('./routes/users')
 const personaggi = require('./routes/personaggi')
