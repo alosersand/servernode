@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lazyBit99/servernode#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongodb": "^3.2.4"
   }
 }
